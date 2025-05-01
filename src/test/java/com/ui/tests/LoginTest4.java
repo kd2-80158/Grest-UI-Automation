@@ -47,8 +47,8 @@ public class LoginTest4 extends TestBase {
 	        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");
 		}
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
-			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider",
-			  retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
+			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
+//			  retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
 		public void loginExcelTest(User user) {
             
 	        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");	
