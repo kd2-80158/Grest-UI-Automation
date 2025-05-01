@@ -1,0 +1,12 @@
+{
+	"environments": {
+		"DEV": {
+			"url": "https://cms.grest.agbe.in/login",
+			"MAX_ATTEMPT": 3
+		},
+		"QA": {
+			"url": "https://cms.grest.agbe.in/login",
+			"MAX_ATTEMPT": 3
+		}
+	}
+}
