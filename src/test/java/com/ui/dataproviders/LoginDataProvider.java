@@ -13,10 +13,11 @@ import com.google.gson.Gson;
 import com.ui.pojos.TestData;
 import com.ui.pojos.User;
 import com.utility.CSVReaderUtility;
+import com.utility.ExcelReaderUtility;
 
 public class LoginDataProvider {
 	
-	@DataProvider(name="LoginDataProvider")
+	@DataProvider(name="LoginTestDataProvider")
 	public Iterator<Object[]> loginDataProvider() throws FileNotFoundException
 	{
 		Gson gson = new Gson();
@@ -32,10 +33,16 @@ public class LoginDataProvider {
 	    return dataToReturn.iterator();
 	}
 	
-	@DataProvider(name="LoginTestDataProvider")
+	@DataProvider(name="LoginTestCSVDataProvider")
 	public Iterator<User> loginCSVDataProvider()
 	{
 		return CSVReaderUtility.readCSVFile("logindata.csv");
+	}
+	
+	@DataProvider(name="LoginTestExcelDataProvider")
+	public Iterator<User> loginExcelDataProvider()
+	{
+		return ExcelReaderUtility.readExcelFile("LoginData.xlsx");
 	}
 
 }

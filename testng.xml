@@ -1,5 +1,5 @@
 
-<suite name="Grest UI Automation Test Suite" verbose="1" parallel="false">
+<suite name="Grest UI Automation Test Suite" verbose="1" parallel="methods">
     <test name="UI Automation">
         <parameter name="browser" value="${browser}" />
         <parameter name="isLambdaTest" value="${isLambdaTest}" />

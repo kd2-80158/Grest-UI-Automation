@@ -20,7 +20,7 @@ public class LoginTest4 extends TestBase {
 
 	//test ng is annotation based library
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
-		  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginDataProvider")
+		  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
 	public void loginTest(User user) {
 
 		/*
@@ -35,13 +35,13 @@ public class LoginTest4 extends TestBase {
         
 	}
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
-			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
+			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestCSVDataProvider")
 		public void loginCSVTest(User user) {
 
 	        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");
 		}
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
-			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider",
+			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestExcelDataProvider",
 			  retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
 		public void loginExcelTest(User user) {
             
