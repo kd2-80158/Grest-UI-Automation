@@ -1,10 +1,8 @@
-
-<suite name="Grest UI Automation Test Suite" verbose="1" parallel="methods" thread-count="4">
+<suite name="Grest UI Automation Test Suite" verbose="1" parallel="tests">
     <test name="UI Automation">
         <parameter name="browser" value="${browser}" />
         <parameter name="isLambdaTest" value="${isLambdaTest}" />
         <parameter name="isHeadless" value="${isHeadless}" />
-        
         <classes>
             <class name="com.ui.tests.LoginTest4" />
         </classes>
