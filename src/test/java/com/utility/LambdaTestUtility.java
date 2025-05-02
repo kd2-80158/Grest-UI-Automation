@@ -43,10 +43,13 @@ public class LambdaTestUtility {
         return driverLocal.get();
 	}
 	
-	public static void quitSession()
-	{
-		if(driverLocal.get()!=null)
-			driverLocal.get().quit();
+	public static void quitSession() {
+	    WebDriver driver = driverLocal.get();
+	    if (driver != null) {
+	        driver.quit();
+	        driverLocal.remove();          // Proper cleanup
+	        capabilitiesLocal.remove();   // Also clean this
+	    }
 	}
 	
 	
