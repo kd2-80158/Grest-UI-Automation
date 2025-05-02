@@ -73,9 +73,4 @@ public class TestBase {
 			logger.error("Error during tearDown", e);
 		}
 	}
-	@AfterSuite
-    public void cleanUpSuite() {
-        System.out.println("Suite completed. Forcing JVM shutdown.");
-        System.exit(0);  // Only use this if other cleanup doesn't work
-    }
 }
