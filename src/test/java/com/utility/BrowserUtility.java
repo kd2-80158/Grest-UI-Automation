@@ -147,5 +147,15 @@ public abstract class BrowserUtility {
 		
 		return path;
 	}
+	public static void quitDriver() {
+	    WebDriver webDriver = driver.get();
+	    if (webDriver != null) {
+	        webDriver.quit();
+	        driver.remove();  // This clears the thread-local value
+	        System.out.println("Driver quit and removed successfully.");
+	    } else {
+	        System.out.println("Driver is null. Nothing to quit or remove.");
+	    }
+	}
 
 }

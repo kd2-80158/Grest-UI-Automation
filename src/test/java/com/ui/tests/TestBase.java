@@ -56,21 +56,20 @@ public class TestBase {
 
 	@AfterMethod(description = "Tear down the browser session")
 	public void tearDown(ITestResult result) {
-		try {
-			if (result.getStatus() == ITestResult.FAILURE) {
-				logger.error("Test failed: Taking screenshot and attaching it to the report");
-				// Code to capture a screenshot or any other failure actions can be added here
-			}
+	    try {
+	        if (result.getStatus() == ITestResult.FAILURE) {
+	            logger.error("Test failed: Taking screenshot and attaching it to the report");
+	            // Code to capture a screenshot or any other failure actions can be added here
+	        }
 
-			if (isLambdaTest) {
-				logger.info("Quitting LambdaTest session");
-				LambdaTestUtility.quitSession();
-			} else if (loginPage != null) {
-				logger.info("Closing the browser locally");
-				loginPage.quit();
-			}
-		} catch (Exception e) {
-			logger.error("Error during tearDown", e);
-		}
+	        if (isLambdaTest) {
+	            logger.info("Quitting LambdaTest session");
+	            LambdaTestUtility.quitSession();
+	        } else {
+	            BrowserUtility.quitDriver(); // Use the static method here
+	        }
+	    } catch (Exception e) {
+	        logger.error("Error during tearDown", e);
+	    }
 	}
 }
