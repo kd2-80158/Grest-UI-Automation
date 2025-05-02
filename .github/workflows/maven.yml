@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 20
     runs-on: ubuntu-latest
 
     steps:
@@ -36,9 +35,9 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4.6.2
       with:
-          name: Test Reports
-          path: target/test-output/report.html
-
+        name: Test Reports
+        path: "**/report.html"
+        
     - name: Test Execution Status
       run: echo "Test Execution Successful"
       
