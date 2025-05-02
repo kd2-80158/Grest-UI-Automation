@@ -17,7 +17,7 @@ import com.utility.ExcelReaderUtility;
 
 public class LoginDataProvider {
 	
-	@DataProvider(name="LoginTestDataProvider")
+	@DataProvider(name="LoginTestDataProvider", parallel=true)
 	public Iterator<Object[]> loginDataProvider() throws FileNotFoundException
 	{
 		Gson gson = new Gson();
@@ -33,13 +33,13 @@ public class LoginDataProvider {
 	    return dataToReturn.iterator();
 	}
 	
-	@DataProvider(name="LoginTestCSVDataProvider")
+	@DataProvider(name="LoginTestCSVDataProvider",parallel=true)
 	public Iterator<User> loginCSVDataProvider()
 	{
 		return CSVReaderUtility.readCSVFile("logindata.csv");
 	}
 	
-	@DataProvider(name="LoginTestExcelDataProvider")
+	@DataProvider(name="LoginTestExcelDataProvider",parallel=true)
 	public Iterator<User> loginExcelDataProvider()
 	{
 		return ExcelReaderUtility.readExcelFile("LoginData.xlsx");
