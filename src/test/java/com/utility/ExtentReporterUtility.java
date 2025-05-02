@@ -11,11 +11,11 @@ public class ExtentReporterUtility {
 	
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	
-	public static void setupSparkReporter(String reportName)
-	{
-		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"//"+reportName);
-		extentReports = new ExtentReports();
-		extentReports.attachReporter(extentSparkReporter);
+	public static void setupSparkReporter(String reportName) {
+	    String reportPath = System.getProperty("user.dir") + "/target/test-output/" + reportName;
+	    ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(reportPath);
+	    extentReports = new ExtentReports();
+	    extentReports.attachReporter(extentSparkReporter);
 	}
 	
 	public static void createExtentTest(String testName)
