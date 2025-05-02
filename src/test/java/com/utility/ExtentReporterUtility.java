@@ -1,7 +1,5 @@
 package com.utility;
 
-import java.io.File;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -13,15 +11,11 @@ public class ExtentReporterUtility {
 	
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	
-	public static void setupSparkReporter(String reportName) {
-	    // Force the report to go into target/test-output
-	    String reportDir = System.getProperty("user.dir") + "/target/test-output/";
-	    new File(reportDir).mkdirs(); // Create the directory if it doesn't exist
-	    String reportPath = reportDir + reportName;
-
-	    ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(reportPath);
-	    extentReports = new ExtentReports();
-	    extentReports.attachReporter(extentSparkReporter);
+	public static void setupSparkReporter(String reportName)
+	{
+		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/"+reportName);
+		extentReports = new ExtentReports();
+		extentReports.attachReporter(extentSparkReporter);
 	}
 	
 	public static void createExtentTest(String testName)

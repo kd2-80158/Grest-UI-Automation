@@ -1,11 +1,15 @@
 package com.ui.tests;
 
-import static org.testng.Assert.assertEquals;
+import static com.constants.Browser.*;
+
+import static org.testng.Assert.*;
 
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.ui.pages.LoginPage;
 import com.ui.pojos.User;
 import com.utility.LoggerUtility;
 
@@ -18,27 +22,17 @@ public class LoginTest4 extends TestBase {
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
 		  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginDataProvider")
 	public void loginTest(User user) {
-		try {
-			// Log the start of the login test
-			logger.info("Starting login test with user: " + user.getUsername());
-			
-			// Performing the login action
-			String actualUserName = loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName();
-			
-			// Logging the expected and actual results
-			logger.info("Expected username: Admin");
-			logger.info("Actual username: " + actualUserName);
-			
-			// Assertion to check if the login was successful
-			assertEquals(actualUserName, "Admin", "Login failed, username does not match expected value.");
-			
-			// Log success
-			logger.info("Login test passed for user: " + user.getUsername());
-		} catch (Exception e) {
-			// Log failure if there was an exception
-			logger.error("Login test failed for user: " + user.getUsername(), e);
-			throw e;  // Re-throw the exception for TestNG to handle it
-		}
+
+		/*
+		 * Test Method rules
+		 * 1. test script should be small.
+		 * 2. you cannot have conditional statement, loops, try-catch methods(don't bring any logic)
+		 * 3. Reduce the use of local variables.
+		 * 4. Have atleast one assertion.
+		 */
+//        String username=loginPage.doLoginWith("nikesh.agarwal@agbeindia.com", "Grest@124").getUserName();
+        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");
+        
 	}
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
 			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
@@ -47,8 +41,8 @@ public class LoginTest4 extends TestBase {
 	        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");
 		}
 	@Test(description = "Verify whether the valid user is able to login to CMS application", groups = {"e2e","sanity"}, 
-			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
-//			  retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
+			  dataProviderClass=com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider",
+			  retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
 		public void loginExcelTest(User user) {
             
 	        assertEquals(loginPage.doLoginWith(user.getUsername(), user.getPassword()).getUserName(), "Admin");	
