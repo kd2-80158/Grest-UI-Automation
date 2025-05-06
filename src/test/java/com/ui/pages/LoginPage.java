@@ -20,6 +20,8 @@ public final class LoginPage extends BrowserUtility {
 
 	private static final By SUBMIT_BUTTON_LOCATOR = By.xpath("//form/div[@class='form-group form-row mt-3 mb-0']/button[@type='submit']");
 
+	private static final By ERROR_MESSAGE_LOCATOR = By.xpath("//*[@id='toast-container']//div[contains(@class, 'toast-message')]");
+
 	Logger logger = LoggerUtility.getLogger(this.getClass());
 	// super - job is to call the parent class ctor from child class ctor
 	public LoginPage(Browser browserName, boolean isHeadless) {
@@ -47,6 +49,21 @@ public final class LoginPage extends BrowserUtility {
 	    String actualTitle = getDriver().getTitle();
 	    logger.info("Page title: " + actualTitle);
 	    return actualTitle.contains(expectedTitle);
+	}
+	
+	public LoginPage doLoginWithInvalidCredentials(String username, String password)
+	{
+		logger.info("Trying to perform login by entering invalid credentials..");
+		enterText(USERNAME_INPUT_LOCATOR, username);
+		enterText(PASSWORD_INPUT_LOCATOR, password);
+		clickOn(SUBMIT_BUTTON_LOCATOR);
+		LoginPage loginPage = new LoginPage(getDriver());
+		return loginPage;
+	}
+	
+	public String getErrorMessage()
+	{
+		return getVisibleText(ERROR_MESSAGE_LOCATOR);
 	}
 
 	public void quit() {
