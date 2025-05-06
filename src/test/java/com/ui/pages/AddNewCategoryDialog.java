@@ -24,6 +24,8 @@ public class AddNewCategoryDialog extends BrowserUtility {
 	
 	public void saveCategory(String imagePath)
 	{
+		clickClose();
+		
 	    // Enter text for category and description
 	    enterText(CATEGORY_INPUT_LOCATOR, "Test");
 	    enterText(DESCRIPTION_INPUT_TEXTAREA, "this is test");
