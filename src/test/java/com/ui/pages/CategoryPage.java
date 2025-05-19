@@ -12,7 +12,6 @@ public class CategoryPage extends BrowserUtility {
 	//passing session
 	public CategoryPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void openAddNewCategoryDialog()

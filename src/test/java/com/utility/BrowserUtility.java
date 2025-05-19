@@ -122,7 +122,7 @@ public abstract class BrowserUtility {
 	}
 
 	public void enterText(By locator, String text) {
-		logger.info("Element found now enter text" + text);
+		logger.info("Element found now enter text: " + text);
 		WebElement element = driver.get().findElement(locator); // find the element
 		element.sendKeys(text);
 	}

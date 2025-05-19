@@ -2,6 +2,8 @@ package com.ui.pages;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,12 +13,15 @@ import com.utility.BrowserUtility;
 import com.utility.LoggerUtility;
 
 import java.time.Duration;
+import java.util.Map;
+import java.util.Set;
 
 public final class Dashboard extends BrowserUtility {
 	Logger logger = LoggerUtility.getLogger(this.getClass());
-	private static final By USERNAME_LOCATOR = By.xpath("//a/div/div");
-	private static final By PRODUCTS_LOCATOR = By.xpath("//span[normalize-space()='Products']");
+	private static final By USERNAME_LOCATOR = By.xpath("//div[text()=' Admin ']");
+	private static final By PRODUCTS_LOCATOR = By.xpath("//span[text()='Products ']");
 	private static final By CATEGORIES_LOCATOR = By.xpath("//span[normalize-space()='Categories']");
+	private static final By LOGOUT_LOCATOR = By.xpath("//a[text()='Logout ']");
 
 	// Constructor to initialize the WebDriver
 	public Dashboard(WebDriver driver) {
@@ -43,6 +48,37 @@ public final class Dashboard extends BrowserUtility {
 			throw new RuntimeException("Unable to click on the 'Products' icon", e);
 		}
 	}
+	
+	//login-->click on Admin ---> click on logout
+	public void doLogout()
+	{
+		WebElement usernameElement = waitForElementVisible(USERNAME_LOCATOR);
+		usernameElement.click();
+		clickOn(LOGOUT_LOCATOR);	
+	}
+	
+	// Print session ID
+	public String getSessionId() {
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    String sessionId = (String) js.executeScript("return window.localStorage.getItem('token');");
+	    System.out.println("Session ID: " + sessionId);
+	    return sessionId;
+	}
+	
+	public void injectSession(String token) {
+	    JavascriptExecutor js = (JavascriptExecutor) getDriver();
+	    js.executeScript("window.localStorage.setItem('token', arguments[0]);", token);
+	}
+
+	public void refresh() {
+	    getDriver().navigate().refresh();
+	}
+	
+	public boolean isDashboardVisible()
+	{
+		return true;
+	}
+
 
 	// Generic wait method for visibility of elements
 	public WebElement waitForElementVisible(By locator) {

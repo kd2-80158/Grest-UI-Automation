@@ -28,7 +28,7 @@ public class TestBase {
 	@Parameters({ "browser", "isLambdaTest", "isHeadless" })
 	@BeforeMethod(description = "Load the login page of the website")
 	public void setup(@Optional("FIREFOX") String browser, @Optional("false") boolean isLambdaTest,
-			@Optional("false") boolean isHeadless, ITestResult result) {
+			@Optional("true") boolean isHeadless, ITestResult result) {
 		try {
 			this.isLambdaTest = isLambdaTest;
 			WebDriver lambdaDriver;

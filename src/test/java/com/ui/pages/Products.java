@@ -22,7 +22,7 @@ public final class Products extends BrowserUtility {
     private static final By PAGINATION_NO = By.xpath("//div/div[2]/div[4]/span[2]");
     
     private static final By ALL_PRODUCTS_LIST_NAME = By.xpath("//div/table/tbody/tr/td[2]");
-
+	private static final By CREATE_PRODUCTS_LOCATOR = By.xpath("//button[text()='Create Products']");
 
 
     public Products(WebDriver driver) {
@@ -66,4 +66,10 @@ public final class Products extends BrowserUtility {
     	return result;
     }
     
+    public CreateNewProductPage clickOnCreateProductsButton()
+    {
+    	WebElement productElement = waitForElementVisible(CREATE_PRODUCTS_LOCATOR);
+    	productElement.click();
+    	return new CreateNewProductPage(getDriver());
+    }
 }
