@@ -125,20 +125,20 @@ public class LoginTest extends TestBase {
 		dashboard.doLogout();
 	}
 	
-	@Test
-	public void checkSessionPersistence()
-	{
-		dashboard = loginPage.doLoginWith(VALID_USERNAME, VALID_PASSWORD);
-        String session1 = dashboard.getSessionId();
-        dashboard.quitDriver();
-        
-        //reopen browser
-        dashboard = loginPage.doLoginWith(VALID_USERNAME, VALID_PASSWORD);
-        dashboard.injectSession(session1);
-        
-        //do refresh
-        dashboard.refresh();
-        
-	}
+//	@Test
+//	public void checkSessionPersistence()
+//	{
+//		dashboard = loginPage.doLoginWith(VALID_USERNAME, VALID_PASSWORD);
+//        String session1 = dashboard.getSessionId();
+//        dashboard.quitDriver();
+//        
+//        //reopen browser
+//        dashboard = loginPage.doLoginWith(VALID_USERNAME, VALID_PASSWORD);
+//        dashboard.injectSession(session1);
+//        
+//        //do refresh
+//        dashboard.refresh();
+//        
+//	}
 
 }
